@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>View {{session['user_id']}}</title>
+    </head>
+    <body>
+         <div class="collapse navbar-collapse" id="navbarText">
+            <span class="navbar-text">
+            Hello {{session['greeting']}}! Read about your trip! <a href='/dashboard'>Dashboard</a> <a href='/logout'>Logout</a>
+            </span>
+        </div> 
+        <p>Start Date: {{ trip['start_date'] }}</p>
+        <p>End Date: {{ trip['end_date'] }}</p>
+        <p>Created On: {{ trip['created_at'] }}</p>
+        <p>Last Updated: {{ trip['updated_at'] }}</p>
+        <p>Plan: {{ trip['plan'] }}</p>
+        <p>Created By {{ session['greeting'] }}</p>
+    </body>
+</html>

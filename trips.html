@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Trip Buddy Dashboard</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!--<a class="navbar-brand" href="#">Private Wall</a> -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <span class="navbar-text">
+            Welcome, {{session['greeting']}}! <a href='/logout'>Logout</a> <a href='/trips/new' role='button' class='btn btn-info'>Create a new trip!</a> 
+            </span>
+        </div>
+    </nav>
+    <div class='container'>
+        <h1>Your trips:</h1>
+          <table class="table">
+                <th>Destination </th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Plan</th>
+                <th>Actions</th>
+                {% for trip in all_trips %}
+                    <tr>
+                        <td><a href="/trips/{{trip['id']}}/show">{{trip['destination']}}</a></td>
+                        <td>{{trip['start_date']}}</td>
+                        <td>{{trip['end_date']}}</td>
+                        <td>{{trip['plan']}}</td>
+                        <td>
+                            <a href="/delete/{{trip['id']}}" class="badge badge-danger">Remove</a> | 
+                            <a href="/trips/edit/{{trip['id']}}" class="badge badge-secondary">Edit</a>
+                            <!--<a href="/trips/{{trip['id']}}" class="badge badge-primary">Granted</a>-->
+                        </td>
+                    </tr>
+                {% endfor %}
+         </table>    
+    </div>
+    <div class='container'>
+        <h1>Other people's trips</h1>
+          <table class="table">
+                <th>Destination </th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Plan</th>
+                <th>Want to Join?</th>
+                {% for trip in all_trips %}
+                    <tr>
+                        <td><a href="#">{{trip['destination']}}</a></td>
+                        <td>{{trip['start_date']}}</td>
+                        <td>{{trip['end_date']}}</td>
+                        <td>{{trip['plan']}}</td>
+                        <td>
+                            <a href="/trips/{{trip['id']}}" class="badge badge-primary">Join</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+         </table>    
+    </div>
+  </body>
+</html>

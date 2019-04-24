@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>New Trip</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!--<a class="navbar-brand" href="#">Private Wall</a> -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <span class="navbar-text">
+            Hello {{session['greeting']}}, Create a trip! <a href='/logout'>Logout</a>
+            </span>
+        </div>
+    </nav>
+    <div class='container'>
+         {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p style="color: red; font-size: .8em;">{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+        {% endwith %}
+        <form action="/page" method="post">
+                <div class="form-group">
+                    <label for="item">Destination</label>
+                    <input type="text" name="destination" class="form-control w-50" placeholder="Destination">
+                </div>
+                <div class="form-group">
+                    <label for="item">Start Date</label>
+                    <input type="date" name="start_date" class="form-control w-50" placeholder="mm/dd/yyyy">
+                </div>
+                <div class="form-group">
+                    <label for="item">End Date</label>
+                    <input type="date" name="end_date" class="form-control w-50" placeholder="mm/dd/yyyy">
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Plan</label>
+                    <input type="textarea" name="plan" class="form-control w-50" placeholder="Plan here">
+                </div>                
+                <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+  </body>
+</html>
